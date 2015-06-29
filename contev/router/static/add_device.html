@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>add device</title>
+		<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+		
+	</head>	
+	<script type="text/javascript"  >
+			function doSubmit()
+			{
+					document.form1.submit();
+			}
+	</script>
+	<body>
+		
+	<form method="post" id="form1" action="/router/addDevice">
+		 {% csrf_token %} 
+	mac:<input type="text" name="mac"/>
+	<input type="submit" onClick="doSubmit()"/>
+	</form>
+	</body>
+</html>

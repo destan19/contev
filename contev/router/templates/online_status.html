@@ -1,0 +1,63 @@
+<html>
+<head>
+	<title>test</title>	
+</head>
+
+<script type="text/javascript">
+	function  init()
+	{
+		var xmlns ="http://www.w3.org/2000/svg"
+		var width=18;
+		var height = 18;
+		var status="{{status}}"
+		
+		var status_arr=status.split(";")
+		var tsvg_obj=document.getElementById("svg_obj");
+		top_g_obj=document.createElementNS(xmlns,'g')
+		top_g_obj.setAttribute("transform","translate(30, 20)")
+		
+		for (var i=0;i < 24;i++) {
+			var g_obj = document.createElementNS(xmlns,'g');
+			g_obj.setAttribute("transform","translate("+ i*20 +", 0)")
+			for (var j=0;j < 7;j++) {
+				var rect_obj=document.createElementNS(xmlns,'rect')
+				rect_obj.setAttribute("y",j*20);
+				rect_obj.setAttribute("width",width);
+				rect_obj.setAttribute("height",height);
+				if (1<<i & status_arr[j])
+					rect_obj.setAttribute("fill","#1e6823");
+				else
+					rect_obj.setAttribute("fill","#eeeeee");
+				g_obj.appendChild(rect_obj)
+			}
+			top_g_obj.appendChild(g_obj)
+		}
+		var hour_arr=['00:00','03:00','06:00','09:00','12:00','15:00','18:00','21:00'];
+		var weekay_arr=['Mon','Wed','Fri','Sun'];
+		for (var i=0;i < 8;i++) {
+			var text_obj=document.createElementNS(xmlns,'text')
+			text_obj.setAttribute("x",i*60-10)
+			text_obj.setAttribute("y","-5")
+			var text=document.createTextNode(hour_arr[i])
+			text_obj.appendChild(text)
+			top_g_obj.appendChild(text_obj)
+		}
+		for (var i=0;i < 4;i++) {
+			var text_obj=document.createElementNS(xmlns,'text')
+			text_obj.setAttribute("x","-30")
+			text_obj.setAttribute("y",15+i*40)
+			var text=document.createTextNode(weekay_arr[i])
+			text_obj.appendChild(text)
+			top_g_obj.appendChild(text_obj)
+		}
+		tsvg_obj.appendChild(top_g_obj)
+	}
+</script>
+<body onload="init()">
+
+<svg id="svg_obj" width="520" height="180"  version="1.1" xmlns = "http://www.w3.org/2000/svg"></svg>
+<br>
+<a href="index">back</a>
+<a href="showDeviceList">refresh</a>
+</body>	
+</html>

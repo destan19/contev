@@ -1,0 +1,39 @@
+<html>
+<body>
+	<head>
+		<title>device list</title>
+		<link href="/static/css/style.css" rel="stylesheet" type="text/css">
+	</head>
+	<script type="text/javascript"  >
+		var a="{{name}}"
+
+	</script>
+<table class="hovertable">
+	<tr>
+		<th>mac address</th>
+		<th>software version</th>
+		<th>hardware version</th>
+		<th>price</th>
+		<th>register date</th>
+		<th>last heart time</th>
+		<th>online status</th>
+	</tr>
+	
+	{% for device in device_list %}
+			<tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';">
+					
+					<td><a href="onlineStatus?mac={{device.obj.mac}}">{{device.obj.mac}}</a></td>
+					<td>{{device.obj.s_version}}</td>
+					<td>{{device.obj.h_version}}</td>
+					<td>{{device.obj.price}}</td>
+					<td>{{device.obj.register_date}}</td>
+					<td>{{device.obj.last_heart_time}}</td>
+					<td>{{device.status}}</td>
+			</tr>
+	{% endfor %}
+
+</table>
+<a href="index">back</a>
+<a href="showDeviceList">refresh</a>
+</body>
+</html>

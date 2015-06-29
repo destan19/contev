@@ -1,0 +1,16 @@
+from django.db import models
+
+# Create your models here.
+class Device(models.Model):
+	mac=models.CharField(primary_key=True,max_length=20);
+	s_version=models.CharField(max_length=20);
+	h_version=models.CharField(max_length=20);
+	price=models.IntegerField(default=0);
+	online_status=models.CharField('status string',max_length=500);
+	last_heart_time=models.DateTimeField('last heart')
+	register_date=models.DateField()
+	cmd_exe_time=models.DateTimeField('cmd exe time')
+	exe_cmd=models.CharField(max_length=50);
+	descript=models.CharField(max_length=200);	
+	def __str__(self):
+		return "%s | %s" %(self.mac,self.price)
